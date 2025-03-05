@@ -1,10 +1,17 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'player',
     pathMatch: 'full',
+  },
+  {
+    path: 'player',
+    loadComponent: () =>
+      import('./pages/player/player.component').then((c) => c.PlayerComponent),
+    canMatch: [AuthGuard],
   },
 
   {
