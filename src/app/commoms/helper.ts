@@ -1,3 +1,4 @@
+import { IPlaylist } from '../interfaces/IPlaylist';
 import { IUser } from '../interfaces/IUser';
 
 export function UserSpotifyDTO(
@@ -7,5 +8,15 @@ export function UserSpotifyDTO(
     id: user.id,
     name: user.display_name,
     imageUrl: user.images.pop().url,
+  };
+}
+
+export function PlaylistSpotifyDTO(
+  playlist: SpotifyApi.PlaylistObjectSimplified
+): IPlaylist {
+  return {
+    id: playlist.id,
+    name: playlist.name,
+    imageUrl: playlist.images.pop().url,
   };
 }
