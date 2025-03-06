@@ -1,27 +1,37 @@
-import { inject } from '@angular/core';
-import { CanMatchFn, Router } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { CanMatch, Route, UrlSegment, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { SpotifyService } from '../services/spotify.service';
 
-export const AuthGuard: CanMatchFn = async (route, segments) => {
-  const router = inject(Router);
-  const spotifyService = inject(SpotifyService);
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthGuard implements CanMatch {
+  constructor(private router: Router, private spotifyService: SpotifyService) {}
 
-  const token = localStorage.getItem('token');
+  canMatch(
+    route: Route,
+    segments: UrlSegment[]
+  ): boolean | Observable<boolean> | Promise<boolean> {
+    const token = localStorage.getItem('token');
 
-  if (!token) {
-    return Unauthenticated(router);
+    if (!token) {
+      return this.unauthenticated();
+    }
+
+    return this.spotifyService.loadUser().then(
+      (userLoaded) => {
+        return userLoaded ? true : this.unauthenticated();
+      },
+      (error) => {
+        return this.unauthenticated();
+      }
+    );
   }
 
-  try {
-    const userLoaded = await spotifyService.loadUser();
-    return userLoaded ? true : Unauthenticated(router);
-  } catch (error) {
-    return Unauthenticated(router);
+  private unauthenticated(): boolean {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+    return false;
   }
-};
-
-export const Unauthenticated = (router: Router) => {
-  localStorage.clear();
-  router.navigate(['/login']);
-  return false;
-};
+}
