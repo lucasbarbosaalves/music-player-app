@@ -1,0 +1,81 @@
+@import "variables";
+
+$h-spotify-logo: 120px;
+$h-menu-options: 150px;
+$m-between-menus: 10px;
+$h-footer: 70px;
+
+$h-calculated: calc($h-spotify-logo + $h-menu-options + $h-footer);
+
+:host {
+  max-width: 300px;
+  min-height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: $background-secondary-color;
+  box-shadow: 1px 0px 15px #00000012;
+  .menus {
+    flex-grow: 1;
+    flex-direction: column;
+    height: 100%;
+    padding: 0px 40px 0px 40px;
+
+    .image-container {
+      min-height: $h-spotify-logo;
+
+      img {
+        width: 70%;
+      }
+    }
+
+    .menu-container {
+      width: 100%;
+
+      &.flex {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      &.options {
+        min-height: $h-menu-options;
+
+        * {
+          margin-bottom: $m-between-menus;
+        }
+      }
+
+      .playlist-title {
+        margin: 10px 0px;
+        align-self: flex-start;
+        font-weight: 700;
+        font-size: 0.7rem;
+        color: $black-transparent-30;
+      }
+
+      .playlist-scroll {
+        width: 100%;
+        max-height: calc(95vh - $h-calculated);
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        * {
+          margin-bottom: $m-between-menus;
+        }
+      }
+    }
+  }
+
+  .user-info {
+    flex-grow: 0;
+    display: block;
+    bottom: 0;
+    align-self: flex-end;
+    height: $h-footer;
+    width: 100%;
+  }
+}
