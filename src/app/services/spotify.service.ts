@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { SpotifyConfig } from '../../environments/environment';
 import Spotify from 'spotify-web-api-js';
 import { IUser } from '../interfaces/IUser';
-import { UserSpotifyDTO } from '../commoms/helper';
+import { PlaylistSpotifyDTO, UserSpotifyDTO } from '../commoms/helper';
+import { IPlaylist } from '../interfaces/IPlaylist';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +13,7 @@ export class SpotifyService {
   spotifyApi: Spotify.SpotifyWebApiJs = null;
   user: IUser;
 
-  constructor() {
+  constructor(private router: Router) {
     this.spotifyApi = new Spotify();
   }
 
@@ -62,5 +64,21 @@ export class SpotifyService {
   setAcessTokenApi(token: string) {
     this.spotifyApi.setAccessToken(token);
     localStorage.setItem('token', token);
+  }
+
+  async getPlaylistsByUser(offset = 0, limit = 50): Promise<IPlaylist[]> {
+    const playlists = await this.spotifyApi.getUserPlaylists(this.user.id, {
+      offset,
+      limit,
+    });
+
+    console.log(playlists);
+
+    return playlists.items.map((item) => PlaylistSpotifyDTO(item));
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }
