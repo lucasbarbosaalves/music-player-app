@@ -11,9 +11,11 @@ import { IPlaylist } from '../../interfaces/IPlaylist';
 import { SpotifyService } from '../../services/spotify.service';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-left-bar',
+  standalone: true,
   imports: [
     MenuButtonComponent,
     FontAwesomeModule,
@@ -33,7 +35,7 @@ export class LeftBarComponent implements OnInit {
 
   playlists: IPlaylist[] = [];
 
-  constructor(private spotifyService: SpotifyService) {}
+  constructor(private spotifyService: SpotifyService, private router: Router) {}
 
   ngOnInit(): void {
     this.searchPlaylists();
@@ -41,6 +43,7 @@ export class LeftBarComponent implements OnInit {
 
   buttonClick(button: string) {
     this.menuSelected = button;
+    this.router.navigateByUrl('player/home');
   }
 
   async searchPlaylists() {
