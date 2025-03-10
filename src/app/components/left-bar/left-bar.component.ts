@@ -31,7 +31,7 @@ export class LeftBarComponent implements OnInit {
   artistIcon = faGuitar;
   playlistIcon = faMusic;
 
-  menuSelected = 'Home';
+  menuSelected = '';
 
   playlists: IPlaylist[] = [];
 

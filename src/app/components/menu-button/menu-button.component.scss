@@ -26,6 +26,11 @@
     color: $primary-color;
     background-color: transparent;
 
+    &:hover {
+      color: white;
+      background-color: $primary-color;
+    }
+
     &.isSelect {
       background-color: $primary-color;
       color: $background-secondary-color;
