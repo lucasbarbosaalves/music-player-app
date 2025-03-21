@@ -12,6 +12,7 @@ import { SpotifyService } from '../../services/spotify.service';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
 import { Router } from '@angular/router';
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-left-bar',
@@ -21,6 +22,7 @@ import { Router } from '@angular/router';
     FontAwesomeModule,
     CommonModule,
     FooterComponent,
+    SearchComponent,
   ],
   templateUrl: './left-bar.component.html',
   styleUrl: './left-bar.component.scss',
