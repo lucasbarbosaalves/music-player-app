@@ -1,0 +1,18 @@
+<div class="container card p-10">
+  <div
+    class="image"
+    [style.background-image]="'url(' + music.album.imageUrl + ')'"
+  ></div>
+  <div class="controls">
+    <span> {{ music.title }} </span>
+    <div class="buttons">
+      <fa-icon [icon]="backIcon" (click)="backMusic()"> </fa-icon>
+      <fa-icon
+        [icon]="isPlaying ? pauseIcon : playIcon"
+        (click)="togglePlayPause()"
+      >
+      </fa-icon>
+      <fa-icon [icon]="nextIcon" (click)="nextMusic()"> </fa-icon>
+    </div>
+  </div>
+</div>

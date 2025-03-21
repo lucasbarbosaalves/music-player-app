@@ -20,4 +20,8 @@ export class MenuButtonComponent {
   onClick() {
     this.click.emit();
   }
+
+  onBlur() {
+    this.isSelect = false;
+  }
 }

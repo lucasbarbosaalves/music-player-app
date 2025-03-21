@@ -1,4 +1,9 @@
-<button type="button" [class.isSelect]="isSelect" (click)="onClick()">
+<button
+  type="button"
+  [class.isSelect]="isSelect"
+  (click)="onClick()"
+  (blur)="onBlur()"
+>
   <ng-content></ng-content>
   <span>{{ description }}</span>
 </button>

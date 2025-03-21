@@ -1,0 +1,7 @@
+<span class="title-md">Top 5 Artistas</span>
+
+@for (artist of artists; track artist) {
+<app-artists-image class="mt-5" [image]="artist.imageUrl">
+  {{ artist.name }}
+</app-artists-image>
+}

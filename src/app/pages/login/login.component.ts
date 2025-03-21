@@ -21,11 +21,25 @@ export class LoginComponent implements OnInit {
     const token = this.spotifyService.tokenUrlCallback();
     if (!!token) {
       this.spotifyService.setAcessTokenApi(token);
-      this.router.navigate(['/player']);
+      this.router.navigate(['/player/home']);
     }
   }
 
   openLoginPage() {
-    window.location.href = this.spotifyService.loginUrl();
+    const loginUrl = this.spotifyService.loginUrl();
+    if (this.isValidUrl(loginUrl)) {
+      window.location.assign(loginUrl);
+    } else {
+      console.error('Invalid login URL');
+    }
+  }
+
+  isValidUrl(url: string): boolean {
+    try {
+      const parsedUrl = new URL(url);
+      return parsedUrl.hostname === 'accounts.spotify.com';
+    } catch (e) {
+      return false;
+    }
   }
 }

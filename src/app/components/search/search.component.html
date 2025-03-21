@@ -1,0 +1,22 @@
+<div class="search-container">
+  <input
+    type="text"
+    [(ngModel)]="field"
+    placeholder="Artistas, Músicas e Playlists"
+    (keyup.enter)="findSearch()"
+  />
+
+  <div class="suggestions flex">
+    <span *ngFor="let input of recentSearch" (click)="search(input)">
+      {{ input }}
+    </span>
+  </div>
+  <div class="search-results" *ngIf="showDropdown">
+    <ul *ngIf="searchResults.length > 0" class="dropdown-list">
+      <li *ngFor="let music of searchResults" class="dropdown-item">
+        <span>{{ music.title }} - {{ music.artists[0].name }}</span>
+        <button (click)="playMusic(music.id)">Play</button>
+      </li>
+    </ul>
+  </div>
+</div>

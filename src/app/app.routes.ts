@@ -9,11 +9,10 @@ export const routes: Routes = [
   },
   {
     path: 'player',
-    loadComponent: () =>
-      import('./pages/player/player.component').then((c) => c.PlayerComponent),
+    loadChildren: () =>
+      import('./pages/player/player.routes').then((m) => m.PlayerRoute),
     canMatch: [AuthGuard],
   },
-
   {
     path: 'login',
     loadComponent: () =>

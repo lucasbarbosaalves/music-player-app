@@ -1,0 +1,106 @@
+@import "variables";
+
+:host {
+  .search-container {
+    position: relative;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px 5px;
+    border-radius: 8px;
+    border-color: $black-transparent-30;
+    outline: none;
+    color: $primary-color;
+    font-size: 1rem;
+    font-weight: 500;
+
+    &::placeholder {
+      color: $black-transparent-30;
+      font-size: 0.85rem;
+    }
+
+    &:focus,
+    &:active {
+      border-color: $primary-color;
+      border-width: 2px;
+    }
+  }
+
+  .suggestions {
+    flex-wrap: wrap;
+
+    span {
+      background-color: $background-secondary-color;
+      margin-right: 5px;
+      padding: 5px 10px;
+      color: $black-transparent-70;
+      border: 1px solid $black-transparent-30;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      border-radius: 20px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb($primary-color, 0.8);
+        color: $background-secondary-color;
+      }
+    }
+  }
+
+  .search-results {
+    position: relative;
+    margin-top: 10px;
+
+    .dropdown-list {
+      position: absolute;
+      width: 100%;
+      max-height: 300px;
+      overflow-y: auto;
+      background-color: $background-secondary-color;
+      border: 1px solid $black-transparent-30;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      .dropdown-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid $black-transparent-30;
+        cursor: pointer;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:hover {
+          background-color: $primary-color;
+          color: $background-secondary-color;
+
+          button {
+            background-color: $background-secondary-color;
+            color: $primary-color;
+          }
+        }
+
+        button {
+          background-color: $primary-color;
+          color: $background-secondary-color;
+          border: none;
+          padding: 5px 10px;
+          border-radius: 5px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: darken($primary-color, 10%);
+          }
+        }
+      }
+    }
+  }
+}

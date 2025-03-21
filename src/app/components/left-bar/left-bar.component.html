@@ -29,16 +29,17 @@
   </div>
   <div class="menu-container flex">
     <span class="playlist-title"> PLAYLISTS </span>
-  </div>
-  <div class="playlist-scroll">
-    <app-menu-button
-      *ngFor="let playlist of playlists"
-      [description]="playlist.name"
-      [isSelect]="menuSelected === playlist.id"
-      (click)="buttonClick(playlist.id)"
-    >
-      <fa-icon [icon]="playlistIcon"></fa-icon>
-    </app-menu-button>
+
+    <div class="playlist-scroll">
+      <app-menu-button
+        *ngFor="let playlist of playlists"
+        [description]="playlist.name"
+        [isSelect]="menuSelected === playlist.id"
+        (click)="buttonClick(playlist.id)"
+      >
+        <fa-icon [icon]="playlistIcon"></fa-icon>
+      </app-menu-button>
+    </div>
   </div>
 </div>
 <div class="user-info">

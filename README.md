@@ -1,59 +1,61 @@
-# MusicPlayer
+# Music Player App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+The **Music Player App** is a web application developed in Angular that allows users to search, play, and manage music using the Spotify API.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Search for songs, artists, and playlists.
+- Music playback with play, pause, next, and back controls.
+- Display search results in a stylized dropdown list.
+- Recent search history.
+- Integration with the Spotify API to fetch information and control playback.
 
-```bash
-ng serve
-```
+## Technologies Used
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Angular**: Framework for building the user interface.
+- **TypeScript**: Programming language used in development.
+- **SCSS**: CSS preprocessor for styling.
+- **Spotify Web API**: API used for integration with Spotify.
+- **Docker**: Tool for containerizing the application.
+- **Docker Compose**: Tool for defining and managing multi-container Docker applications.
 
-## Code scaffolding
+## Project Structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- `src/app/components`: Contains the application components, such as `search`, `player-card`, and `right-bar`.
+- `src/app/services`: Contains the application services, such as `spotify.service.ts` and `player.service.ts`.
+- `src/app/interfaces`: Contains the interfaces used in the application.
+- `src/app/commoms`: Contains helper functions and factories.
+- `Dockerfile`: Configuration file to create the Docker image of the application.
+- `docker-compose.yml`: Configuration file to orchestrate the Docker containers.
 
-```bash
-ng generate component component-name
-```
+## How to Run the Project Locally
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Prerequisites
 
-```bash
-ng generate --help
-```
+- Docker installed on the machine.
+- Docker Compose installed on the machine.
 
-## Building
+### Steps to Run the Project
 
-To build the project run:
+1. Clone this repository:
 
-```bash
-ng build
-```
+   ```sh
+   git clone https://github.com/lucasbarbosaalves/music-player-app.git
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+   ```
 
-## Running unit tests
+2. Navigate to the project directory:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+   ```sh
+   cd music-player-app
 
-```bash
-ng test
-```
+   ```
 
-## Running end-to-end tests
+3. Build and start the Docker container:
 
-For end-to-end (e2e) testing, run:
+   ```sh
+   docker-compose up --build
 
-```bash
-ng e2e
-```
+   ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+4. Open your browser and go to http://localhost:4200 to see the application running.
