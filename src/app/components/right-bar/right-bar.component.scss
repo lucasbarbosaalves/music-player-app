@@ -10,5 +10,7 @@
   width: 300px;
   padding: 40px 20px 20px 20px;
 
-  background-color: $background-secondary-color;
+  .player {
+    flex-grow: 1;
+  }
 }
