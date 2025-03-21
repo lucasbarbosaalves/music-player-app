@@ -34,6 +34,7 @@ The **Music Player App** is a web application developed in Angular that allows u
 
 - Docker installed on the machine.
 - Docker Compose installed on the machine.
+- A Spotify Developer account to use their API. You can create one [here](https://developer.spotify.com/dashboard/).
 
 ### Steps to Run the Project
 
