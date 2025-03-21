@@ -84,12 +84,10 @@ export class SpotifyService {
     return playlists.items.map((item) => PlaylistSpotifyDTO(item));
   }
 
-  async getTopArtists(limit = 10, time_range: 'long_term'): Promise<IArtist[]> {
+  async getTopArtists(limit = 10): Promise<IArtist[]> {
     const artists = await this.spotifyApi.getMyTopArtists({
       limit,
-      time_range,
     });
-    console.log(artists);
 
     return artists.items.map((x) => SpotifyArtistDTO(x));
   }
@@ -108,7 +106,26 @@ export class SpotifyService {
     const music = await this.spotifyApi.getMyCurrentPlayingTrack();
     return SpotifyTrackDTO(music.item);
   }
+  async searchMusic(query: string): Promise<IMusic[]> {
+    const result = await this.spotifyApi.searchTracks(query);
+    return result.tracks.items.map((track) => SpotifyTrackDTO(track));
+  }
 
+  async backMusic() {
+    await this.spotifyApi.skipToPrevious();
+  }
+
+  async nextMusic() {
+    await this.spotifyApi.skipToNext();
+  }
+
+  async pause() {
+    await this.spotifyApi.pause();
+  }
+
+  async play() {
+    await this.spotifyApi.play();
+  }
   logout() {
     localStorage.clear();
     this.router.navigate(['/login']);

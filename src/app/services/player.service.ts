@@ -9,6 +9,7 @@ import { SpotifyService } from './spotify.service';
 })
 export class PlayerService {
   actualMusic = new BehaviorSubject<IMusic>(newMusic());
+  isPlaying = new BehaviorSubject<boolean>(false);
   timerId: any = null;
 
   constructor(private spotifyService: SpotifyService) {
@@ -24,11 +25,29 @@ export class PlayerService {
 
     // Searching for the current song every 3 seconds
     this.timerId = setInterval(async () => {
-      await this.getActualMusic;
+      await this.getActualMusic();
     }, 3000);
   }
 
   setActualMusic(music: IMusic) {
     this.actualMusic.next(music);
+  }
+
+  async backMusic() {
+    await this.spotifyService.backMusic();
+  }
+
+  async pause() {
+    await this.spotifyService.pause();
+    this.isPlaying.next(false);
+  }
+
+  async play() {
+    await this.spotifyService.play();
+    this.isPlaying.next(true);
+  }
+
+  async nextMusic() {
+    await this.spotifyService.nextMusic();
   }
 }
