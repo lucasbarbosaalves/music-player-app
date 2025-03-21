@@ -1,4 +1,4 @@
-# Music Player App
+# Music Player App - Spotify
 
 The **Music Player App** is a web application developed in Angular that allows users to search, play, and manage music using the Spotify API.
 
